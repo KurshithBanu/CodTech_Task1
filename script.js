@@ -73,20 +73,22 @@ submitButton.addEventListener('click', () => {
     submitButton.disabled = true;
 });
 
-restartButton.addEventListener('click', () => {
-    currentQuestion = 0;
-    score = 0;
-    loadQuestion();
-});
+restartButton.addEventListener('click', resetQuiz);
 
 function showResult() {
     quizContainer.classList.remove('active');
     resultContainer.classList.add('active');
     scoreElement.textContent = `${score} / ${questions.length}`;
-    if (score === questions.length) {
-        resultContainer.innerHTML += `<p>Congratulations! You scored awesome </p>`;
-    }
+    resultContainer.innerHTML += `<p>Congratulations! You scored awesome </p>`;
 }
 
-//initialize quiz
+function resetQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    submitButton.disabled = true;
+    resultContainer.innerHTML = '';
+    loadQuestion();
+}
+
+// Initialize quiz
 loadQuestion();
