@@ -44,7 +44,6 @@ function loadQuestion() {
     });
     quizContainer.classList.add('active');
     resultContainer.classList.remove('active');
-    submitButton.disabled = true; // Ensure submit is disabled until an answer is selected
 }
 
 function selectAnswer(index) {
@@ -74,26 +73,20 @@ submitButton.addEventListener('click', () => {
     submitButton.disabled = true;
 });
 
-restartButton.addEventListener('click', resetQuiz);
-
 function showResult() {
     quizContainer.classList.remove('active');
     resultContainer.classList.add('active');
     scoreElement.textContent = `${score} / ${questions.length}`;
-    resultContainer.innerHTML = ''; // Clear previous content
     if (score === questions.length) {
         resultContainer.innerHTML += `<p>Congratulations! You scored awesome </p>`;
     }
 }
 
-function resetQuiz() {
+restartButton.addEventListener('click', () => {
     currentQuestion = 0;
     score = 0;
-    resultContainer.classList.remove('active');
-    quizContainer.classList.add('active');
-    resultContainer.innerHTML = ''; // Clear result content to reset state
     loadQuestion();
-}
+});
 
-// Initialize quiz
+//initialize quiz
 loadQuestion();
