@@ -44,6 +44,7 @@ function loadQuestion() {
     });
     quizContainer.classList.add('active');
     resultContainer.classList.remove('active');
+    submitButton.disabled = true; // Ensure submit is disabled until an answer is selected
 }
 
 function selectAnswer(index) {
@@ -79,14 +80,18 @@ function showResult() {
     quizContainer.classList.remove('active');
     resultContainer.classList.add('active');
     scoreElement.textContent = `${score} / ${questions.length}`;
-    resultContainer.innerHTML += `<p>Congratulations! You scored awesome </p>`;
+    resultContainer.innerHTML = ''; // Clear previous content
+    if (score === questions.length) {
+        resultContainer.innerHTML += `<p>Congratulations! You scored awesome </p>`;
+    }
 }
 
 function resetQuiz() {
     currentQuestion = 0;
     score = 0;
-    submitButton.disabled = true;
-    resultContainer.innerHTML = '';
+    resultContainer.classList.remove('active');
+    quizContainer.classList.add('active');
+    resultContainer.innerHTML = ''; // Clear result content to reset state
     loadQuestion();
 }
 
