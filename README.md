@@ -1,4 +1,4 @@
-Task 1: Interactive Quiz Apllication
+Task 1: Interactive Quiz Application
 
 Steps included:
 
